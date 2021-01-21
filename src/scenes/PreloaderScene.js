@@ -6,7 +6,7 @@ import ass4 from '../assets/asteriod4.jpeg';
 import laser from '../assets/laser.png';
 import workspace from '../assets/warspace.png';
 import workspace1 from '../assets/warspace3.png';
-import player from '../assets/solider.jpeg';
+import player from '../assets/soliders.png';
 import instructionBg from '../assets/instruction.png';
 import boom from '../assets/boom.png';
 import logo from '../assets/logo.png';
@@ -25,7 +25,7 @@ export default class PreloaderScene extends Phaser.Scene {
     const progressBar = this.add.graphics();
     const progressBox = this.add.graphics();
     progressBox.fillStyle(0x222222, 0.7);
-    progressBox.fillRect(200, 270, 300, 50);
+    progressBox.fillRect(200, 270, 400, 50);
 
     const { width } = this.cameras.main;
     const { height } = this.cameras.main;
@@ -67,12 +67,12 @@ export default class PreloaderScene extends Phaser.Scene {
       percentText.setText(`${Math.floor(value * 100, 1)}%`);
       progressBar.clear();
       progressBar.fillStyle(0x09ff00, 1);
-      progressBar.fillRect(210, 280, 280 * value, 30);
+      progressBar.fillRect(210, 280, 380 * value, 30);
     });
 
     // update file progress text
-    this.load.on('fileprogress', file => {
-      assetText.setText(`Loading ${file.key}`);
+    this.load.on('fileprogress', () => {
+      assetText.setText('Loading space Miltia');
     });
 
     // remove progress bar when complete
@@ -90,11 +90,11 @@ export default class PreloaderScene extends Phaser.Scene {
     this.load.image('titleBug', ass2);
     this.load.image('asteriods3', ass3);
     this.load.image('base', ass4);
-    this.load.image('base', laser);
-    this.load.image('base', workspace);
+    this.load.image('laser', laser);
+    this.load.image('warspace', workspace);
     this.load.image('titleBackground', workspace1);
-    this.load.image('base', player);
-    this.load.image('base', instructionBg);
+    this.load.image('player', player);
+    this.load.image('instructBg', instructionBg);
     this.load.spritesheet('boom', boom, {
       frameWidth: 122,
       frameHeight: 136,

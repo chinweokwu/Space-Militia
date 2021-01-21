@@ -7,12 +7,11 @@ export default class GameScene extends Phaser.Scene {
 
   preload() {
     this.load.image('block', 'assets/sprites/block.png');
-    this.load.image('militia', '../assets/militia.jpg');
     this.load.image('cursor', 'assets/sprites/drawcursor.png');
   }
 
   create() {
-    const militia = this.physics.add.image(200, 300, 'militia');
+    const militia = this.physics.add.image(200, 300, 'player');
     const cursor = this.add.image(0, 0, 'cursor').setVisible(false);
     this.input.on('pointermove', (pointer) => {
       cursor.setVisible(true).setPosition(pointer.x, pointer.y);
