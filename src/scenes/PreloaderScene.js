@@ -1,15 +1,15 @@
 import Phaser from 'phaser';
-import ass1 from '../assets/asteriod1.jpeg';
-import ass2 from '../assets/asteriod2.jpeg';
-import ass3 from '../assets/asteriod3.jpeg';
-import ass4 from '../assets/asteriod4.jpeg';
 import laser from '../assets/laser.png';
 import workspace from '../assets/warspace.png';
 import workspace1 from '../assets/warspace3.png';
 import player from '../assets/soliders.png';
 import instructionBg from '../assets/instruction.png';
-import boom from '../assets/boom.png';
 import logo from '../assets/logo.png';
+import sprExplosion from '../assets/sprExplosion.png';
+import sprEnemy0 from '../assets/sprEnemy0.png';
+import sprEnemy1 from '../assets/sprEnemy1.png';
+import sprEnemy2 from '../assets/sprEnemy2.png';
+import sprLaserEnemy0 from '../assets/sprLaserEnemy0.png';
 
 export default class PreloaderScene extends Phaser.Scene {
   constructor() {
@@ -86,20 +86,25 @@ export default class PreloaderScene extends Phaser.Scene {
 
     // load assets needed
     this.load.image('logo', logo);
-    this.load.image('asteriod1', ass1);
-    this.load.image('titleBug', ass2);
-    this.load.image('asteriods3', ass3);
-    this.load.image('base', ass4);
     this.load.image('laser', laser);
     this.load.image('warspace', workspace);
     this.load.image('titleBackground', workspace1);
     this.load.image('player', player);
     this.load.image('instructBg', instructionBg);
-    this.load.spritesheet('boom', boom, {
-      frameWidth: 122,
-      frameHeight: 136,
-      endFrame: 0,
+    this.load.spritesheet('sprExplosion', sprExplosion, {
+      frameWidth: 32,
+      frameHeight: 32,
     });
+    this.load.spritesheet('sprEnemy0', sprEnemy0, {
+      frameWidth: 16,
+      frameHeight: 16,
+    });
+    this.load.image('sprEnemy1', sprEnemy1);
+    this.load.spritesheet('sprEnemy2', sprEnemy2, {
+      frameWidth: 16,
+      frameHeight: 16,
+    });
+    this.load.image('sprLaserEnemy0', sprLaserEnemy0);
   }
 
   init() {

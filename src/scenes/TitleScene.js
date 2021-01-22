@@ -1,5 +1,5 @@
 import Phaser from 'phaser';
-import createButton from '../helpers/buttons.js';
+import createButton from '../helpers/buttons';
 
 export default class TitleScene extends Phaser.Scene {
   constructor() {
