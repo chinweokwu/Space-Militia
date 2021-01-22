@@ -1,5 +1,7 @@
+/* eslint-disable no-plusplus */
+/* eslint-disable no-array-constructor */
 import Phaser from 'phaser';
-import LaserGroup from '../helpers/laserGroup';
+import Ship from '../helpers/ship';
 
 export default class GameScene extends Phaser.Scene {
   constructor() {
@@ -9,50 +11,47 @@ export default class GameScene extends Phaser.Scene {
   create() {
     this.cameras.main.setBackgroundColor(0x1D1923);
     this.warspace = this.add.tileSprite(400, 320, 800, 640, 'warspace');
+    this.cursors = this.input.keyboard.createCursorKeys();
+    this.myShip = new Ship(this, 400, 500);
+    this.add.existing(this.myShip);
+    this.enemies = this.physics.add.group();
+    this.enemies2 = new Array();
 
-    this.laserGroup = new LaserGroup(this);
-    this.addShip();
-    this.addEvents();
-  }
 
-  addShip() {
-    const centerX = this.cameras.main.width / 2;
-    const bottom = this.cameras.main.height;
-    this.ship = this.add.image(centerX, bottom - 90, 'player');
-    this.ship.setScale(0.61);
-  }
+    let k = 0;
+    for (k = 0; k < 21; k++) {
+      const x = Math.random() * 800;
+      const y = Math.random() * 400;
 
-  addEvents() {
-    // Moving the mouse should move the ship
-    this.input.on('pointermove', (pointer) => {
-      this.ship.x = pointer.x;
-    });
-
-    // Clicking the mouse should fire a bullet
-    this.input.on('pointerdown', () => {
-      this.fireBullet();
-    });
-
-    // Firing bullets should also work on enter / spacebar press
-    this.inputKeys = [
-      this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE),
-      this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ENTER),
-    ];
-  }
-
-  fireBullet() {
-    this.laserGroup.fireBullet(this.ship.x, this.ship.y - 20);
+      this.enemy = new Enemy1(this, x, y);
+      this.add.existing(this.enemy);
+      this.enemies.add(this.enemy);
+      this.enemies2.push(this.enemy);
+    }
   }
 
   update() {
-    //  Scroll the background
     this.warspace.tilePositionY += 5;
-    // Loop over all keys
-    this.inputKeys.forEach(key => {
-      // Check if the key was just pressed, and if so -> fire the bullet
-      if (Phaser.Input.Keyboard.JustDown(key)) {
-        this.fireBullet();
-      }
-    });
+    if (this.cursors.space.isDown) {
+      this.myShip.fireLasers();
+    }
+
+    if (this.cursors.left.isDown) {
+      this.myShip.moveLeft();
+    }
+
+    if (this.cursors.right.isDown) {
+      this.myShip.moveRight();
+    }
+
+    if (this.cursors.up.isDown) {
+      this.myShip.moveUp();
+    }
+
+    if (this.cursors.down.isDown) {
+      this.myShip.moveDown();
+    }
+
+    this.myShip.update();
   }
 }

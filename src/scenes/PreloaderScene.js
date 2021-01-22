@@ -10,6 +10,7 @@ import sprEnemy0 from '../assets/sprEnemy0.png';
 import sprEnemy1 from '../assets/sprEnemy1.png';
 import sprEnemy2 from '../assets/sprEnemy2.png';
 import sprLaserEnemy0 from '../assets/sprLaserEnemy0.png';
+import enemyShip from '../assets/enemyship.png';
 
 export default class PreloaderScene extends Phaser.Scene {
   constructor() {
@@ -91,6 +92,7 @@ export default class PreloaderScene extends Phaser.Scene {
     this.load.image('titleBackground', workspace1);
     this.load.image('player', player);
     this.load.image('instructBg', instructionBg);
+    this.load.image('enemyShip', enemyShip);
     this.load.spritesheet('sprExplosion', sprExplosion, {
       frameWidth: 32,
       frameHeight: 32,
