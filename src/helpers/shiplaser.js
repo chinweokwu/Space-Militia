@@ -1,3 +1,4 @@
+/* eslint-disable class-methods-use-this */
 import Phaser from 'phaser';
 
 export default class ShipLaser extends Phaser.GameObjects.Sprite {
@@ -7,12 +8,14 @@ export default class ShipLaser extends Phaser.GameObjects.Sprite {
     this.setPosition(x, y);
     this.speed = 10;
     this.scene = scene;
+    scene.physics.world.enable(this);
+    scene.physics.add.collider(this, scene.enemies, this.handleHit, null, this);
   }
 
-  // handleHit(laserSprite, enemySprite) {
-  //   enemySprite.destroy(true);
-  //   laserSprite.destroy(true);
-  // }
+  handleHit(laserSprite, enemySprite) {
+    enemySprite.destroy(false);
+    laserSprite.destroy(true);
+  }
 
   preUpdate(time, delta) {
     // eslint-disable-next-line eqeqeq
