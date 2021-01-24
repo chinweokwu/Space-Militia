@@ -19,9 +19,10 @@ export default class TitleScene extends Phaser.Scene {
       .fillStyle(0x222222, 1.6)
       .fillRect(120, 330, 630, 165);
 
-    const instructions = ` Alien SpaceShips are tryinig to invade Earth.\n 
- Use space key to shoot and direction key,\n to move your warship and defend earth.
- May the force be with you!`;
+    const instructions = ` Alien SpaceShips are tryinig to invade Earth.
+ Use space key to shoot and W,A,S,D, 
+ as direction key to move your warship 
+ and defend earth. May the force be with you!`;
 
     this.add.text(180, 350, instructions, {
       fontSize: '20px',

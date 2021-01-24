@@ -1,9 +1,8 @@
 /* eslint-disable no-var */
 /* eslint-disable eqeqeq */
 /* eslint-disable no-plusplus */
-/* eslint-disable no-array-constructor */
-import Phaser from 'phaser';
 
+import Phaser from 'phaser';
 import CarrierShip from '../helpers/carriership';
 import GunShip from '../helpers/gunship';
 import ChaserShip from '../helpers/chasership';
