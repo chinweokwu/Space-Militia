@@ -11,10 +11,12 @@ import Player from '../helpers/player';
 export default class GameScene extends Phaser.Scene {
   constructor() {
     super('Game');
+    this.score = 0;
   }
 
   create() {
     this.warspace = this.add.tileSprite(400, 320, 800, 640, 'warspace');
+    this.scoreText = this.add.text(16, 16, 'score: 0', { fontSize: '32px', fill: '#fff' });
     this.anims.create({
       key: 'sprEnemy0',
       frames: this.anims.generateFrameNumbers('sprEnemy0'),
@@ -100,6 +102,7 @@ export default class GameScene extends Phaser.Scene {
         }
         enemy.explode(true);
         playerLaser.destroy();
+        this.getPoint();
       }
     });
 
@@ -131,6 +134,11 @@ export default class GameScene extends Phaser.Scene {
       }
     }
     return arr;
+  }
+
+  getPoint() {
+    this.score += 10;
+    this.scoreText.setText(`Score: ${this.score}`);
   }
 
   update() {
