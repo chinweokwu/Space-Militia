@@ -15,7 +15,9 @@
 
 When you first open the game, you will see a loading screen. Once it finishes loading all the assets, it will show you the main menu of the game.
 
-![screenshot]() 
+![screenshot](./src/assets/loadingGame.png) 
+
+![screenshot](./src/assets/gameMenu.png) 
 
 To Play you will need a keyboard and good reflexes. You first need to enter your name in the field on top. Then click on the "Start Game" button, the game will begin immediately, be ready!
 
