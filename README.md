@@ -35,7 +35,7 @@ Once the game has begun,
 
 ## Game Design Document
 
-> To check the GDD go [here]()
+> To check the GDD go [here](https://github.com/chinweokwu/Space-Militia/blob/branch-a/GameDesignDocument.md)
 
 ## How to Install
 
