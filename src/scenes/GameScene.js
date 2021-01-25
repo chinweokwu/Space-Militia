@@ -6,9 +6,7 @@ import Phaser from 'phaser';
 import CarrierShip from '../helpers/carriership';
 import GunShip from '../helpers/gunship';
 import ChaserShip from '../helpers/chasership';
-import ScrollingBackground from '../helpers/scrollingbg';
 import Player from '../helpers/player';
-
 
 export default class GameScene extends Phaser.Scene {
   constructor() {
@@ -16,6 +14,7 @@ export default class GameScene extends Phaser.Scene {
   }
 
   create() {
+    this.warspace = this.add.tileSprite(400, 320, 800, 640, 'warspace');
     this.anims.create({
       key: 'sprEnemy0',
       frames: this.anims.generateFrameNumbers('sprEnemy0'),
@@ -40,14 +39,6 @@ export default class GameScene extends Phaser.Scene {
       frameRate: 20,
       repeat: -1,
     });
-
-    this.backgrounds = [];
-    for (let i = 0; i < 5; i++) {
-      const keys = ['warspace', 'titleBackground'];
-      const key = keys[Phaser.Math.Between(0, keys.length - 1)];
-      const bg = new ScrollingBackground(this, key, i * 10);
-      this.backgrounds.push(bg);
-    }
 
     this.player = new Player(
       this,
@@ -143,6 +134,7 @@ export default class GameScene extends Phaser.Scene {
   }
 
   update() {
+    this.warspace.tilePositionY += 5;
     if (!this.player.getData('isDead')) {
       this.player.update();
       if (this.keyW.isDown) {
@@ -206,10 +198,6 @@ export default class GameScene extends Phaser.Scene {
           laser.destroy();
         }
       }
-    }
-
-    for (let i = 0; i < this.backgrounds.length; i++) {
-      this.backgrounds[i].update();
     }
   }
 }
