@@ -36,8 +36,8 @@ export default class GameScene extends Phaser.Scene {
       repeat: 0,
     });
     this.anims.create({
-      key: 'sprPlayer',
-      frames: this.anims.generateFrameNumbers('sprPlayer'),
+      key: 'player',
+      frames: this.anims.generateFrameNumbers('player'),
       frameRate: 20,
       repeat: -1,
     });
@@ -46,8 +46,10 @@ export default class GameScene extends Phaser.Scene {
       this,
       this.game.config.width * 0.5,
       this.game.config.height * 0.5,
-      'sprPlayer',
+      'player',
     );
+
+    this.player.setScale(0.35);
 
     this.keyW = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W);
     this.keyS = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.S);
