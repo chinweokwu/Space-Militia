@@ -21,7 +21,7 @@ When you first open the game, you will see a loading screen. Once it finishes lo
 
 To Play you will need a keyboard and good reflexes. You first need to enter your name in the field on top. Then click on the "Start Game" button, the game will begin immediately, be ready!
 
-![screenshot]()
+![screenshot](./src/assets/battlespace.png)
 
 Once the game has begun,
 
