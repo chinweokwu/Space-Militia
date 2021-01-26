@@ -137,6 +137,7 @@ export default class GameScene extends Phaser.Scene {
   }
 
   getPoint() {
+    // add an if statement to make score ends when game ends
     this.score += 10;
     this.scoreText.setText(`Score: ${this.score}`);
   }
