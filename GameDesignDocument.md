@@ -1,6 +1,6 @@
 # Debugger Game
 
-![screenshot]()
+![screenshot](./src/assets/battlespace.png)
 
 **Author: Paul Morah**
 
@@ -13,7 +13,7 @@
 - [Scenes](#Scenes)
 - [Game Characters](#Game-Characters)
   - [Player](#Player)
-  - [Bugs](#Aliens)
+  - [Enemy](#Aliens)
 - [Health](#Health)
 - [Scoring](#Scoring)
 
@@ -54,7 +54,7 @@ The first thing you will see is a loading screen with a progress bar. This will 
 ## Game Characters
 ### Player
 
-  ![image](./src/assets/sprPlayer.png)
+  ![image](./src/assets/soliders.png)
 
   The player is a space ship that aims and shoots after you press the space bar
 
