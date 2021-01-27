@@ -7,15 +7,18 @@ import CarrierShip from '../helpers/carriership';
 import GunShip from '../helpers/gunship';
 import ChaserShip from '../helpers/chasership';
 import Player from '../helpers/player';
+import nameValidation from '../helpers/nameValid';
+import { submitScore } from '../helpers/scores';
+
 
 export default class GameScene extends Phaser.Scene {
   constructor() {
     super('Game');
-    this.score = 0;
   }
 
   create() {
     this.warspace = this.add.tileSprite(400, 320, 800, 640, 'warspace');
+    this.score = 0;
     this.scoreText = this.add.text(16, 16, 'score: 0', { fontSize: '32px', fill: '#fff' });
     this.anims.create({
       key: 'sprEnemy0',
@@ -114,6 +117,7 @@ export default class GameScene extends Phaser.Scene {
         player.explode(false);
         player.onDestroy();
         enemy.explode(true);
+        this.gameOver();
       }
     });
 
@@ -123,6 +127,7 @@ export default class GameScene extends Phaser.Scene {
         player.explode(false);
         player.onDestroy();
         laser.destroy();
+        this.gameOver();
       }
     });
   }
@@ -142,6 +147,18 @@ export default class GameScene extends Phaser.Scene {
     // add an if statement to make score ends when game ends
     this.score += 10;
     this.scoreText.setText(`Score: ${this.score}`);
+  }
+
+  gameOver() {
+    this.physics.pause();
+    this.add.text(260, 290, 'Game Over', {
+      fontSize: '30px',
+      fill: '#fff',
+    });
+
+    const name = document.querySelector('.name-input').value;
+
+    submitScore(nameValidation(name), parseInt(this.scoreText.text.split(' ')[1], 10));
   }
 
   update() {
