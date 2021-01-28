@@ -33,4 +33,19 @@ const getScores = async () => {
   return leaderboard;
 };
 
-export { submitScore, getScores };
+const getCurrentScore = async () => {
+  const data = await fetch(URL);
+  const scores = await data.json();
+  const leaderboard = [];
+  scores.result
+    .sort((a, b) => b - a)
+    .forEach(c => {
+      if (leaderboard.every(d => d.user !== c.user)) {
+        leaderboard.push(c);
+      }
+    });
+
+  return leaderboard;
+};
+
+export { submitScore, getScores, getCurrentScore };

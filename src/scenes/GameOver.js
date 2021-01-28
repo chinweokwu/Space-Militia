@@ -1,5 +1,7 @@
 import Phaser from 'phaser';
 import createButton from '../helpers/buttons';
+// import { getCurrentScore } from '../helpers/scores';
+// import loadScoreboard from '../helpers/ scoreboard';
 
 export default class SceneGameOver extends Phaser.Scene {
   constructor() {
@@ -7,6 +9,9 @@ export default class SceneGameOver extends Phaser.Scene {
   }
 
   create() {
+    // retrive score data from the api
+    // getCurrentScore().then(scores => loadScoreboard(scores, this));
+
     this.title = this.add.text(250, 150, 'GAME OVER', {
       fontFamily: 'monospace',
       fontSize: 48,
