@@ -31,7 +31,7 @@ Once the game has begun,
 
 ## Live Demo
 
-> To play this game online go [here]()
+> To play this game online go [here](https://rawcdn.githack.com/chinweokwu/Space-Militia/ed9a9ebfba34f835d9ff685a8998a0e0e33b874a/dist/index.html)
 
 ## Game Design Document
 
