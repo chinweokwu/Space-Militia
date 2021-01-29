@@ -1,4 +1,3 @@
-
 const URL = 'https://us-central1-js-capstone-backend.cloudfunctions.net/api/games/fI75PnUYKpPRYIl5whzs/scores';
 
 const submitScore = (name, points) => {
