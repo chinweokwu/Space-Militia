@@ -1,4 +1,4 @@
-import nameValidation from './nameValid';
+import nameValidation from '../src/helpers/nameValid';
 
 describe('Name Validation', () => {
   it('Returns Guest if name is empty', () => {

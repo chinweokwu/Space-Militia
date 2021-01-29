@@ -1,5 +1,4 @@
-
-import { getScores, submitScore } from './scores';
+import { getScores, submitScore } from '../src/helpers/scores';
 
 global.fetch = jest.fn(() => Promise.resolve({
   json: () => Promise.resolve({
