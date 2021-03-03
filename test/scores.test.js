@@ -1,11 +1,11 @@
-import { getScores, submitScore } from '../src/helpers/scores';
+import { getResults, submitResults } from '../src/helpers/scores';
 
 global.fetch = jest.fn(() => Promise.resolve({
   json: () => Promise.resolve({
     result: [
-      { name: 'name1', score: 10 },
-      { name: 'name2', score: 58 },
-      { name: 'name3', score: 27 }],
+      { name: 'paul', score: 100 },
+      { name: 'zak', score: 1158 },
+      { name: 'james', score: 20 }],
   }),
 }));
 
@@ -13,29 +13,30 @@ beforeEach(() => {
   fetch.mockClear();
 });
 
-describe('Get Scores', () => {
-  it('Returns a promise', () => {
-    expect(getScores() instanceof Promise).toBeTruthy();
+describe('Player Scores', () => {
+  it('Displays a promise', () => {
+    expect(getResults() instanceof Promise).toBeTruthy();
     expect(fetch).toHaveBeenCalledTimes(1);
   });
-  it('Returns a list of sorted scores', () => {
-    getScores()
-      .then(scores => expect(scores[0].score > scores[1].score).toBeTruthy());
+
+  it('Displays a list of sorted results', () => {
+    getResults()
+      .then(result => expect(result[0].score > result[1].score).toBeTruthy());
     expect(fetch).toHaveBeenCalledTimes(1);
   });
 });
 
-describe('Submit Score', () => {
-  it('Makes a fetch API call if score is positive', () => {
-    submitScore('Positive', 100);
+describe('Result Submitted', () => {
+  it('fetches API when results is greater than zero', () => {
+    submitResults('Positive', 1010);
     expect(fetch).toHaveBeenCalledTimes(1);
   });
-  it("Doesn't make a fetch API call if score is zero", () => {
-    submitScore('Neutral', 0);
+  it("Doesn't fetch an API call when results is zero", () => {
+    submitResults('Neutral', 0);
     expect(fetch).toHaveBeenCalledTimes(0);
   });
-  it("Doesn't make a fetch API call if score is negative", () => {
-    submitScore('Negative', -100);
+  it("Doesn't fetch an API call when results less than zero", () => {
+    submitResults('Negative', -5);
     expect(fetch).toHaveBeenCalledTimes(0);
   });
 });

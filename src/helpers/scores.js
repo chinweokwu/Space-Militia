@@ -1,13 +1,14 @@
 const URL = 'https://us-central1-js-capstone-backend.cloudfunctions.net/api/games/fI75PnUYKpPRYIl5whzs/scores';
+const axios = require('axios');
 
-const submitScore = (name, points) => {
-  if (points <= 0) {
+const submitResults = (playername, kills) => {
+  if (kills <= 0) {
     return;
   }
 
-  const score = { user: name, score: points };
+  const score = { user: playername, score: kills };
 
-  fetch(URL, {
+  axios(URL, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -16,35 +17,21 @@ const submitScore = (name, points) => {
   });
 };
 
-const getScores = async () => {
+const getResults = async () => {
   const data = await fetch(URL);
-  const scores = await data.json();
-  const leaderboard = [];
+  const results = await data.json();
+  const board = [];
 
-  scores.result
-    .sort((a, b) => (a.score > b.score ? -1 : 1))
-    .forEach(c => {
-      if (leaderboard.every(d => d.user !== c.user) && leaderboard.length < 5) {
-        leaderboard.push(c);
+  results.result
+    .sort((i, j) => (i.score > j.score ? -1 : 1))
+    .forEach(val => {
+      if (board.every(score => score.user !== val.user) && board.length < 5) {
+        board.push(val);
       }
     });
 
-  return leaderboard;
+  return board;
 };
 
-const getCurrentScore = async () => {
-  const data = await fetch(URL);
-  const scores = await data.json();
-  const leaderboard = [];
-  scores.result
-    .sort((a, b) => b - a)
-    .forEach(c => {
-      if (leaderboard.every(d => d.user !== c.user)) {
-        leaderboard.push(c);
-      }
-    });
 
-  return leaderboard;
-};
-
-export { submitScore, getScores, getCurrentScore };
+export { submitResults, getResults };

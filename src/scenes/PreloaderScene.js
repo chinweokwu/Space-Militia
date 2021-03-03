@@ -20,74 +20,68 @@ export default class PreloaderScene extends Phaser.Scene {
   }
 
   preload() {
-    // add background image
-    const bg = this.add.image(400, 320, 'background');
-    bg.setDisplaySize(800, 640);
+    const bgScene = this.add.image(400, 320, 'background');
+    bgScene.setDisplaySize(800, 640);
 
-    // display progress bar
-    const progressBar = this.add.graphics();
-    const progressBox = this.add.graphics();
-    progressBox.fillStyle(0x222222, 0.7);
-    progressBox.fillRect(200, 270, 400, 50);
+    const loadingBar = this.add.graphics();
+    const loadingBox = this.add.graphics();
+    loadingBox.fillStyle(0x222222, 0.7);
+    loadingBox.fillRect(200, 270, 400, 50);
 
     const { width } = this.cameras.main;
     const { height } = this.cameras.main;
-    const loadingText = this.make.text({
+    const loadingGame = this.make.text({
       x: width / 2,
       y: height / 2 - 70,
-      text: 'Loading...',
+      text: 'Loading Space Militia...',
       style: {
-        font: '20px monospace',
-        fill: '#ffffff',
+        font: '18px monospace',
+        fill: '#fff',
       },
     });
-    loadingText.setOrigin(0.5, 0.5);
+    loadingGame.setOrigin(0.5, 0.5);
 
-    const percentText = this.make.text({
+    const greenText = this.make.text({
       x: width / 2,
       y: height / 2 - 24,
       text: '0%',
       style: {
         font: '18px monospace',
-        fill: '#ffffff',
+        fill: '#fff',
       },
     });
-    percentText.setOrigin(0.5, 0.5);
+    greenText.setOrigin(0.5, 0.5);
 
-    const assetText = this.make.text({
+    const assets = this.make.text({
       x: width / 2,
       y: height / 2 + 50,
       text: '',
       style: {
         font: '18px monospace',
-        fill: '#ffffff',
+        fill: '#fff',
       },
     });
-    assetText.setOrigin(0.5, 0.5);
+    assets.setOrigin(0.5, 0.5);
 
-    // update progress bar
     this.load.on('progress', value => {
-      percentText.setText(`${Math.floor(value * 100, 1)}%`);
-      progressBar.clear();
-      progressBar.fillStyle(0x09ff00, 1);
-      progressBar.fillRect(210, 280, 380 * value, 30);
+      greenText.setText(`${Math.floor(value * 100, 1)}%`);
+      loadingBar.clear();
+      loadingBar.fillStyle(0x09ff00, 1);
+      loadingBar.fillRect(210, 280, 380 * value, 30);
     });
 
-    // update file progress text
     this.load.on('fileprogress', () => {
-      assetText.setText('Loading space Miltia');
+      assets.setText('Loading space Miltia');
     });
 
-    // remove progress bar when complete
     this.load.on('complete', () => {
-      loadingText.setText('Done!');
-      assetText.destroy();
+      loadingGame.setText('Starting Game!');
+      assets.destroy();
       this.ready();
     });
 
     this.timedEvent = this.time.delayedCall(2000, this.ready, [], this);
 
-    // load assets needed
     this.load.image('logo', logo);
     this.load.image('laser', laser);
     this.load.image('warspace', workspace);
@@ -120,7 +114,6 @@ export default class PreloaderScene extends Phaser.Scene {
     this.readyCount = 0;
   }
 
-  // start title scene when finish loading
   ready() {
     this.readyCount += 1;
     if (this.readyCount === 2) {

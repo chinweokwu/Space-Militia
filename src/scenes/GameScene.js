@@ -4,7 +4,7 @@ import GunShip from '../helpers/gunship';
 import ChaserShip from '../helpers/chasership';
 import Player from '../helpers/player';
 import nameValidation from '../helpers/nameValid';
-import { submitScore } from '../helpers/scores';
+import { submitResults } from '../helpers/scores';
 
 
 export default class GameScene extends Phaser.Scene {
@@ -154,7 +154,7 @@ export default class GameScene extends Phaser.Scene {
 
     const name = document.querySelector('.name-input').value;
 
-    submitScore(nameValidation(name), parseInt(this.scoreText.text.split(' ')[1], 10));
+    submitResults(nameValidation(name), parseInt(this.scoreText.text.split(' ')[1], 10));
   }
 
   update() {

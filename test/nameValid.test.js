@@ -1,19 +1,19 @@
 import nameValidation from '../src/helpers/nameValid';
 
-describe('Name Validation', () => {
-  it('Returns Guest if name is empty', () => {
-    expect(nameValidation('')).toBe('Guest');
+describe('Validation', () => {
+  it('Displays Militia when playername is empty', () => {
+    expect(nameValidation('')).toBe('Militia');
   });
 
-  it('Returns Guest if name consist of spaces', () => {
-    expect(nameValidation('   ')).toBe('Guest');
+  it('Displays Militia when playername is filled with gaps', () => {
+    expect(nameValidation('   ')).toBe('Militia');
   });
 
-  it('Returns trimmed name', () => {
-    expect(nameValidation('  NameWithSpaces  ')).toBe('NameWithSpaces');
+  it('Displays Playername', () => {
+    expect(nameValidation('  PlayerNameWithGaps  ')).toBe('NameWithSpaces');
   });
 
-  it('Returns name', () => {
-    expect(nameValidation('NameWithNoSpaces')).toBe('NameWithNoSpaces');
+  it('Displays Playername', () => {
+    expect(nameValidation('PlayerNameWithNoGaps')).toBe('NameWithNoSpaces');
   });
 });

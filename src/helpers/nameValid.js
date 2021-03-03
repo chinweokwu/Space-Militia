@@ -1,9 +1,9 @@
-const nameValidation = name => {
-  if (name.trim() === '') {
-    return 'Guest';
+const nameValidation = playername => {
+  if (playername.trim() === '') {
+    return 'Militia';
   }
 
-  return name.trim();
+  return playername.trim();
 };
 
 export { nameValidation as default };

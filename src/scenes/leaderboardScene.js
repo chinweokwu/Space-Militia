@@ -1,7 +1,7 @@
 import Phaser from 'phaser';
 import createButton from '../helpers/buttons';
 import loadScoreboard from '../helpers/loadscoreboard';
-import { getScores } from '../helpers/scores';
+import { getResults } from '../helpers/scores';
 
 export default class LeaderboardScene extends Phaser.Scene {
   constructor() {
@@ -10,7 +10,7 @@ export default class LeaderboardScene extends Phaser.Scene {
 
   create() {
     // retrive score data from the api
-    getScores().then(scores => loadScoreboard(scores, this));
+    getResults().then(scores => loadScoreboard(scores, this));
 
     // set background and logo
     this.add.image(400, 320, 'background')
